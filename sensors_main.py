@@ -1,6 +1,6 @@
 import sys
 
-# This is the main finction for controlling the flow of the
+# This is the main function for controlling the flow of the
 # implementation.
 def main():
     limits = parse_limits()
