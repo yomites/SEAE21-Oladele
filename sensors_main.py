@@ -1,5 +1,6 @@
 import sys
 
+# We need to import sys to use the command line argument. That's why it is imported.
 # This is the main function for controlling the flow of the
 # implementation.
 def main():
