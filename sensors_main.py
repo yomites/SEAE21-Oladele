@@ -47,7 +47,21 @@ def check_limits(limits):
 # returning a fixed sensor readings (four sensors, five readings per
 # sensor) for development and testing. To be replaced with an actual
 # implementation.
+
+# def read_sensors():
+#     return [
+#             [21.2, 18.2, 18.2, 22.2],
+#             [-5.0, -4.2, -3.9, -4.5],
+#             [1.2, 0.0, 0.5, -0.8, -1.0],
+#             [25.0, -4.2, -13.9, 4.5]]
+
+
+# This is a stub implementation for function read_sensors
+# returning a fixed sensor readings (four sensors, five readings per
+# sensor) for development and testing. To be replaced with an actual
+# implementation.
 def read_sensors():
+    
     return [
             [21.2, 18.2, 18.2, 22.2],
             [-5.0, -4.2, -3.9, -4.5],
