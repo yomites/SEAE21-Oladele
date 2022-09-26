@@ -49,7 +49,8 @@ class TestSensors(unittest.TestCase):
         mock_print.assert_called_with("Error: Incorrect command line arguments.")
 
         # if you want to see what's in mock_print, you can use the following
-        sys.stdout.write(str(mock_print.call_args))
+        # sys.stdout.write(str(mock_print.call_args) + "\n")
+        # sys.stdout.write(str(mock_print.call_args_list) + "\n")
 
 
 if __name__ == '__main__':
