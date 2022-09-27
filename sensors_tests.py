@@ -53,5 +53,34 @@ class TestSensors(unittest.TestCase):
         # sys.stdout.write(str(mock_print.call_args_list) + "\n")
 
 
+    # The test case test_read_sensors1 tests the read_sensors
+    # to see that the length of arrays is 4 representing the 
+    # readings from the four sensors.
+    def test_read_sensors1(self):
+        result = sensors_main.read_sensors()
+        length = len(result)
+        self.assertEqual(length, 4)
+
+    # The test case test_read_sensors2 tests the read_sensors
+    # to see that the first element in the 1st sensor readings is 21.2.
+    def test_read_sensors2(self):
+        result = sensors_main.read_sensors()
+        element1 = result[0][0]
+        self.assertEqual(element1, 21.2)
+
+    # The test case test_read_sensors3 tests the read_sensors
+    # to see that the third element in the 1st sensor readings is 22.2.   
+    def test_read_sensors3(self):
+        result = sensors_main.read_sensors()
+        element2 = result[0][3]
+        self.assertEqual(element2, 22.2)
+
+    # The test case test_read_sensors4 that tests the read_sensors
+    # to see that the third element in the 4th sensor reading is -13.9.
+    def test_read_sensors4(self):
+        result = sensors_main.read_sensors()
+        element2 = result[-1][2]
+        self.assertEqual(element2, -13.9)
+
 if __name__ == '__main__':
     unittest.main()
