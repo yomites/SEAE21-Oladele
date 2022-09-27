@@ -1,7 +1,8 @@
 import sensors_main
 import unittest
-from unittest.mock import patch # neede for the example integration testing.
-import sys # needed for setting the command line parameters / arguments for test cases.
+from unittest.mock import patch  # neede for the example integration testing.
+# needed for setting the command line parameters / arguments for test cases.
+import sys
 
 # Unit tests implemented with Python's built-in unittest
 # need to be classes, so here we use TestSensors class
@@ -35,7 +36,6 @@ class TestSensors(unittest.TestCase):
         result = sensors_main.check_limits(limits)
         self.assertFalse(result, False)
 
-
     @patch('builtins.print')
     def test_check_limits_integration1(self, mock_print):
         # sets command line parameters, since they are where main gets the
@@ -46,16 +46,17 @@ class TestSensors(unittest.TestCase):
         sensors_main.main()
 
         # check that the console output is the same as the expected error message.
-        mock_print.assert_called_with("Error: Incorrect command line arguments.")
+        mock_print.assert_called_with(
+            "Error: Incorrect command line arguments.")
 
         # if you want to see what's in mock_print, you can use the following
         # sys.stdout.write(str(mock_print.call_args) + "\n")
         # sys.stdout.write(str(mock_print.call_args_list) + "\n")
 
-
     # The test case test_read_sensors1 tests the read_sensors
-    # to see that the length of arrays is 4 representing the 
+    # to see that the length of arrays is 4 representing the
     # readings from the four sensors.
+
     def test_read_sensors1(self):
         result = sensors_main.read_sensors()
         length = len(result)
@@ -66,21 +67,31 @@ class TestSensors(unittest.TestCase):
     def test_read_sensors2(self):
         result = sensors_main.read_sensors()
         element1 = result[0][0]
-        self.assertEqual(element1, 21.2)
+        self.assertEqual(element1, 21.1)
 
     # The test case test_read_sensors3 tests the read_sensors
-    # to see that the third element in the 1st sensor readings is 22.2.   
+    # to see that the third element in the 1st sensor readings is 22.2.
     def test_read_sensors3(self):
         result = sensors_main.read_sensors()
         element2 = result[0][3]
-        self.assertEqual(element2, 22.2)
+        self.assertEqual(element2, 19.9)
 
     # The test case test_read_sensors4 that tests the read_sensors
     # to see that the third element in the 4th sensor reading is -13.9.
     def test_read_sensors4(self):
         result = sensors_main.read_sensors()
-        element2 = result[-1][2]
-        self.assertEqual(element2, -13.9)
+        element3 = result[-1][2]
+        self.assertEqual(element3, 23.2)
+
+     # The test case test_read_sensors5 that tests the read_sensors
+    # to see that the total number of readings for all the four sensors
+    # is 96 i.e (24 * 4).
+    def test_read_sensors5(self):
+        result = sensors_main.read_sensors()
+        element4 = len(result[0]) + len(result[1]) + \
+            len(result[2]) + len(result[3])
+        self.assertEqual(element4, 96)
+
 
 if __name__ == '__main__':
     unittest.main()
