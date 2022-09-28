@@ -88,9 +88,9 @@ class TestSensors(unittest.TestCase):
     # is 96 i.e (24 * 4).
     def test_read_sensors5(self):
         result = sensors_main.read_sensors()
-        element4 = len(result[0]) + len(result[1]) + \
+        total_readings = len(result[0]) + len(result[1]) + \
             len(result[2]) + len(result[3])
-        self.assertEqual(element4, 96)
+        self.assertEqual(total_readings, 96)
 
 
 if __name__ == '__main__':
