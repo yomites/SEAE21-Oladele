@@ -1,4 +1,5 @@
 import sys
+import os
 
 # We need to import sys to use the command line argument. That's why it is imported.
 # This is the main function for controlling the flow of the
@@ -50,7 +51,7 @@ def check_limits(limits):
         return False
 
 # This function is used to open and read each of the text files
-# representing the sensors readings.
+# given to it as a parameter representing each of the sensors readings.
 
 
 def openAndReadFiles(directory):
@@ -62,25 +63,22 @@ def openAndReadFiles(directory):
     f.close()
     return sensorList
 
-# This is a stub implementation for function read_sensors
-# returning a fixed sensor readings (four sensors, five readings per
-# sensor) for development and testing. To be replaced with an actual
-# implementation.
+# The read_sensors function scans through the "testdata" directory
+# located in the current directory, gets each of the text files in
+# the location and calls the openAndReadFiles function to read and
+# process the contents of each file. Finally it returns the list of
+# all the files readings representing the sensors readings.
 
 
 def read_sensors():
-    sensorsReadingsList = []
-    sensor1List = openAndReadFiles("testdata/sensor1.txt")
-    sensor2List = openAndReadFiles("testdata/sensor2.txt")
-    sensor3List = openAndReadFiles("testdata/sensor3.txt")
-    sensor4List = openAndReadFiles("testdata/sensor4.txt")
-
-    sensorsReadingsList.append(sensor1List)
-    sensorsReadingsList.append(sensor2List)
-    sensorsReadingsList.append(sensor3List)
-    sensorsReadingsList.append(sensor4List)
-
-    return sensorsReadingsList
+    allSensorsReadingsList = []
+    base_path = "testdata"
+    with os.scandir(base_path) as files:
+        for file_ in files:
+            file_data = openAndReadFiles(file_)
+            allSensorsReadingsList.append(file_data)
+    files.close()
+    return allSensorsReadingsList
 
 # Other parts of the implementation such as printing the information
 # for the operator are also missing and to be implemented.
