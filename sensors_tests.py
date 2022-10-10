@@ -101,6 +101,11 @@ class TestSensors(unittest.TestCase):
         self.assertEqual(minTemp, 18.4)
         self.assertEqual(maxTemp, 24.4)
 
+    def test_openAndReadFiles(self):
+        testData = "test_file.csv"
+        result = sensors_main.openAndReadFiles(testData)
+        self.assertEqual(result, [22.5, 22.4, 22.2, 22.0])
+
 
 if __name__ == '__main__':
     unittest.main()
