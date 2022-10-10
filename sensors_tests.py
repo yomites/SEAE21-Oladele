@@ -101,6 +101,8 @@ class TestSensors(unittest.TestCase):
         self.assertEqual(minTemp, 18.4)
         self.assertEqual(maxTemp, 24.4)
 
+    # The test case test_openAndReadFiles that tests the openAndReadFiles
+    # function to see that it return a correct list of temperature values.
     def test_openAndReadFiles(self):
         testData = "test_file.csv"
         result = sensors_main.openAndReadFiles(testData)
