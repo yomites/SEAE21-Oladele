@@ -13,10 +13,10 @@ def main():
     # readings from each sensor.
     limits = parse_limits()
     sensor_data = []
-    warningLength = displayLimitsWarning(limits)
 
     if len(limits) > 0 and check_limits(limits):
         sensor_data = read_sensors()
+        warningLength = displayLimitsWarning(limits, sensor_data)
         if (len(warningLength) > 0):
             print(
                 "\nWarning!!!.........Warning!!!.........Warning!!!\n")
@@ -112,9 +112,8 @@ def minMaxFunction(sensorsDataList):
 # return the list of temperatures that are above or below the limits.
 
 
-def displayLimitsWarning(limits):
+def displayLimitsWarning(limits, sensor_data):
     listSet = []
-    sensor_data = read_sensors()
 
     for index1, row in enumerate(sensor_data):
         for index2, item in enumerate(row):

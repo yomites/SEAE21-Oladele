@@ -108,6 +108,11 @@ class TestSensors(unittest.TestCase):
         result = sensors_main.openAndReadFiles(testData)
         self.assertEqual(result, [22.5, 22.4, 22.2, 22.0])
 
+    def test_displayLimitsWarning(self):
+        testData = [[21.1, 18.4], [23.4, 21.7], [22.2, 24.4], [14.5, 23.1]]
+        limits = [18, 24]
+        result = sensors_main.displayLimitsWarning(limits)
+
 
 if __name__ == '__main__':
     unittest.main()
