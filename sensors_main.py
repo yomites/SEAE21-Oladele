@@ -7,17 +7,26 @@ import os
 
 
 def main():
+
+    # Here in main, I just called all the functions to print
+    # the warnings if there is any as well as printing the
+    # readings from each sensor.
     limits = parse_limits()
     sensor_data = []
+    warningLength = displayLimitsWarning(limits)
 
     if len(limits) > 0 and check_limits(limits):
         sensor_data = read_sensors()
-        # This is a mockup code that prints the sensor readings
-        # to console. To be replaced with actual implementation
-        # (whatever that might be according to the low level design,
-        # for example).
-        for row in sensor_data:
-            print(row)
+        if (len(warningLength) > 0):
+            print(
+                "\nWarning!!!.........Warning!!!.........Warning!!!\n")
+            for row in warningLength:
+                print("{0} °C measured from Sensor {1} at {2}:00 is {3} of {4} °C\n".format(
+                    row[2], (row[0] + 1), row[1], row[3], row[4]))
+        else:
+            print("No abnormal measurements")
+        for i, rows in enumerate(sensor_data):
+            print("Sensor {0} data \n{1}\n".format(i + 1, rows))
     else:
         print("Error: Incorrect command line arguments.")
 
@@ -98,6 +107,26 @@ def minMaxFunction(sensorsDataList):
     max_E, min_E = allElements[-1], allElements[0]
 
     return max_E, min_E
+
+# This function displayLimitsWarning takes limits as parameter and
+# return the list of temperatures that are above or below the limits.
+
+
+def displayLimitsWarning(limits):
+    listSet = []
+    sensor_data = read_sensors()
+
+    for index1, row in enumerate(sensor_data):
+        for index2, item in enumerate(row):
+            if (item < limits[0]):
+                message1 = "lower than the minimum limit"
+                listSet.append([index1, index2, item, message1, limits[0]])
+            if (item > limits[1]):
+                message2 = "greater than the maximum limit"
+
+                listSet.append([index1, index2, item, message2, limits[1]])
+
+    return listSet
 
 
 main()
