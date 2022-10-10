@@ -85,5 +85,19 @@ def read_sensors():
 
 # Let's add this comment to test commit to the source on GitHub
 
+# This function (minMaxAveFunction) take a list of lists and returns
+# the daily highest and lowest temperatures.
+
+
+def minMaxAveFunction(sensorsDataList):
+    allElements = []
+    for eachList in sensorsDataList:
+        for item in eachList:
+            allElements.append(item)
+    allElements.sort()
+    max_E, min_E = allElements[-1], allElements[0]
+
+    return max_E, min_E
+
 
 main()
