@@ -83,7 +83,7 @@ class TestSensors(unittest.TestCase):
         element3 = result[-1][2]
         self.assertEqual(element3, 23.2)
 
-     # The test case test_read_sensors5 that tests the read_sensors
+    # The test case test_read_sensors5 that tests the read_sensors
     # to see that the total number of readings for all the four sensors
     # is 96 i.e (24 * 4).
     def test_read_sensors5(self):
@@ -91,6 +91,15 @@ class TestSensors(unittest.TestCase):
         total_readings = len(result[0]) + len(result[1]) + \
             len(result[2]) + len(result[3])
         self.assertEqual(total_readings, 96)
+
+    # The test case test_minMaxFunction that tests the minMaxFunction
+    # to see that it returns the minimum and maximum daily temperature.
+    def test_minMaxFunction(self):
+        testData = [[21.1, 18.4], [23.4, 21.7], [22.2, 24.4]]
+        result = sensors_main.minMaxFunction(testData)
+        maxTemp, minTemp = result
+        self.assertEqual(minTemp, 18.4)
+        self.assertEqual(maxTemp, 24.4)
 
 
 if __name__ == '__main__':
