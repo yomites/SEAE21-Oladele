@@ -89,7 +89,7 @@ def read_sensors():
 # the daily highest and lowest temperatures.
 
 
-def minMaxAveFunction(sensorsDataList):
+def minMaxFunction(sensorsDataList):
     allElements = []
     for eachList in sensorsDataList:
         for item in eachList:
