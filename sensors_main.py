@@ -12,7 +12,6 @@ def main():
     # the warnings if there is any as well as printing the
     # readings from each sensor.
     limits = parse_limits()
-    sensor_data = []
 
     if len(limits) > 0 and check_limits(limits):
         sensor_data = read_sensors()

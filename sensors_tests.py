@@ -108,10 +108,19 @@ class TestSensors(unittest.TestCase):
         result = sensors_main.openAndReadFiles(testData)
         self.assertEqual(result, [22.5, 22.4, 22.2, 22.0])
 
+    # This test case test_displayLimitsWarning that tests the
+    # displayLimitsWarning function to see that it returns the
+    # correct list of items outside the upper and lower
+    # temperature limit.
     def test_displayLimitsWarning(self):
         testData = [[21.1, 18.4], [23.4, 21.7], [22.2, 24.4], [14.5, 23.1]]
         limits = [18, 24]
-        result = sensors_main.displayLimitsWarning(limits)
+        result = sensors_main.displayLimitsWarning(limits, testData)
+
+        self.assertEqual(
+            result[1], [3, 0, 14.5, "lower than the minimum limit", 18])
+        self.assertEqual(
+            result[0], [2, 1, 24.4, "greater than the maximum limit", 24])
 
 
 if __name__ == '__main__':
