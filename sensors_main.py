@@ -15,17 +15,17 @@ def main():
 
     if len(limits) > 0 and check_limits(limits):
         sensor_data = read_sensors()
-        warningLength = displayLimitsWarning(limits, sensor_data)
-        if (len(warningLength) > 0):
+        warningListLength = displayLimitsWarning(limits, sensor_data)
+        if (len(warningListLength) > 0):
             print(
                 "\nWarning!!!.........Warning!!!.........Warning!!!\n")
-            for row in warningLength:
+            for row in warningListLength:
                 print("{0} °C measured from Sensor {1} at {2}:00 is {3} of {4} °C\n".format(
                     row[2], (row[0] + 1), row[1], row[3], row[4]))
         else:
             print("No abnormal measurements")
-        for i, rows in enumerate(sensor_data):
-            print("Sensor {0} data \n{1}\n".format(i + 1, rows))
+        for i, row_ in enumerate(sensor_data):
+            print("Sensor {0} data \n{1}\n".format(i + 1, row_))
     else:
         print("Error: Incorrect command line arguments.")
 

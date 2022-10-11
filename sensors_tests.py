@@ -40,7 +40,7 @@ class TestSensors(unittest.TestCase):
     def test_check_limits_integration1(self, mock_print):
         # sets command line parameters, since they are where main gets the
         # min and max temp settings
-        sys.argv = [["sensors_main.py"], [22], [18]]
+        sys.argv = [["sensors_main.py"], 22, 18]
 
         # Call main with the command line parameters set up.
         sensors_main.main()
@@ -112,7 +112,7 @@ class TestSensors(unittest.TestCase):
     # displayLimitsWarning function to see that it returns the
     # correct list of items outside the upper and lower
     # temperature limit.
-    def test_displayLimitsWarning(self):
+    def test_displayLimitsWarning1(self):
         testData = [[21.1, 18.4], [23.4, 21.7], [22.2, 24.4], [14.5, 23.1]]
         limits = [18, 24]
         result = sensors_main.displayLimitsWarning(limits, testData)
@@ -121,6 +121,40 @@ class TestSensors(unittest.TestCase):
             result[1], [3, 0, 14.5, "lower than the minimum limit", 18])
         self.assertEqual(
             result[0], [2, 1, 24.4, "greater than the maximum limit", 24])
+
+    # This test case test_displayLimitsWarning that tests the
+    # displayLimitsWarning function to see that the return list
+    # is empty when all temperature measurements are within the
+    # upper and lower temperature limit.
+
+    def test_displayLimitsWarning2(self):
+        testData = [[21.1, 18.4], [23.4, 21.7], [22.2, 24], [19.5, 23.1]]
+        limits = [18, 24]
+        result = sensors_main.displayLimitsWarning(limits, testData)
+
+        self.assertEqual(
+            len(result), 0)
+
+    # This is an integration test case for testing the readings
+    # printed for the each sensor.
+    @patch('builtins.print')
+    def test_check_limits_integration2(self, mock_print):
+        # sets command line parameters, since they are where main gets the
+        # min and max temp settings
+        sys.argv = [["sensors_main.py"], 18, 22]
+
+        # Call main with the command line parameters set up.
+        sensors_main.main()
+
+        # check that the console output is the same as the expected error message.
+        mock_print.assert_called_with(
+            "Sensor 4 data \n[23.1, 23.5, 23.2, 12.9, 21.0, 21.1, 22.0, 22.5, 22.4, 22.2, 22.0, 22.1, 21.9, 22.2, 22.7, 22.5, 22.3, 22.6, 21.2, 21.9, 20.2, 20.7, 20.2, 19.4]\n")
+
+        # We are only testing the last sensor reading in the above mock_print
+
+        # if you want to see what's in mock_print, you can use the following
+        # sys.stdout.write(str(mock_print.call_args) + "\n")
+        # sys.stdout.write(str(mock_print.call_args_list) + "\n")
 
 
 if __name__ == '__main__':
