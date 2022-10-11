@@ -14,7 +14,14 @@ def main():
     limits = parse_limits()
 
     if len(limits) > 0 and check_limits(limits):
+
         sensor_data = read_sensors()
+
+        maxTemp, minTemp = minMaxFunction(sensor_data)
+        print("\nThe max temperature measured so far is {} °C.".format(maxTemp))
+        print("----------------------------------------------")
+        print("Minimum temperature measured so far is {} °C.".format(minTemp))
+        
         warningListLength = displayLimitsWarning(limits, sensor_data)
         if (len(warningListLength) > 0):
             print(
