@@ -18,9 +18,9 @@ def main():
         sensor_data = read_sensors()
 
         maxTemp, minTemp = minMaxFunction(sensor_data)
-        print("\nThe max temperature measured so far is {} °C.".format(maxTemp))
+        print("\nThe maximum temperature measured so far is {} °C.".format(maxTemp))
         print("----------------------------------------------")
-        print("Minimum temperature measured so far is {} °C.".format(minTemp))
+        print("The minimum temperature measured so far is {} °C.".format(minTemp))
         
         warningListLength = displayLimitsWarning(limits, sensor_data)
         if (len(warningListLength) > 0):
@@ -47,7 +47,7 @@ def parse_limits():
     limits = []
 
     try:
-        limits = [int(sys.argv[1]), int(sys.argv[2])]
+        limits = [float(sys.argv[1]), float(sys.argv[2])]
     except Exception:
         pass
 
