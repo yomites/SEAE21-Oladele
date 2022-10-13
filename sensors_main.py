@@ -69,9 +69,9 @@ def check_limits(limits):
 # given to it as a parameter representing each of the sensors readings.
 
 
-def openAndReadFiles(directory):
+def openAndReadFiles(directoryfiles):
     sensorList = []
-    with open(directory) as f:
+    with open(directoryfiles) as f:
         for line_ in f:
             line = line_.strip().split(",")
             sensorList.append(float(line[1]))
