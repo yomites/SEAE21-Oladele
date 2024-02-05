@@ -82,7 +82,7 @@ def openAndReadFiles(directoryfiles):
 # located in the current directory, gets each of the text files in
 # the location and calls the openAndReadFiles function to read and
 # process the contents of each file. Finally it returns the list of
-# all the files readings representing the sensors readings.
+# all the files data representing the sensors readings.
 
 
 def read_sensors():
@@ -100,7 +100,7 @@ def read_sensors():
 
 # Let's add this comment to test commit to the source on GitHub
 
-# This function (minMaxAveFunction) take a list of lists and returns
+# This function (minMaxFunction) take a list of lists and returns
 # the daily highest and lowest temperatures.
 
 
@@ -114,7 +114,7 @@ def minMaxFunction(sensorsDataList):
 
     return max_E, min_E
 
-# This function displayLimitsWarning takes limits as parameter and
+# This function displayLimitsWarning takes limits and sensor_data as parameter and
 # return the list of temperatures that are above or below the limits.
 
 
