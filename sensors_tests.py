@@ -157,7 +157,7 @@ class TestSensors(unittest.TestCase):
         # sys.stdout.write(str(mock_print.call_args_list) + "\n")
 
 
-    # The test cast test_minMaxFunction2 is an integration test for the 
+    # The test case test_minMaxFunction2 is an integration test for the 
     # function minMaxFunction, openAndReadFiles and read_sensors. It
     # tests that the correct min. and max. temperature measurements are
     # returned implying that the functions work together as expected.
